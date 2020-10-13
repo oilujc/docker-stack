@@ -1,27 +1,24 @@
-version: "3.1"
+version: "3"
 
 services:
-  pg:
-    image: postgres:latest
-    container_name: pg_db
+  db:
+    container_name: postgis_db
+    image: kartoza/postgis:latest
     restart: always
     environment:
       POSTGRES_USER: ${PG_USER}
       POSTGRES_PASSWORD: ${PG_PASSWORD}
-      POSTGRES_DB: ${PG_NAME}
+      POSTGRES_DBNAME: ${PG_NAME}
       PGDATA: /var/lib/postgresql/data/pgdata
-    networks:
-      - dev-network
     ports:
       - "${PG_PORT}:${PG_PORT}"
-    env_file:
-      - ./.env
     volumes:
       - ./data/postgres/pgdata:/var/lib/postgresql/data/pgdata
+    networks:
+      - postgis-network
 
 networks:
-  dev-network:
-    driver: bridge
+  postgis-network:
 
 volumes:
   postgres_data:
