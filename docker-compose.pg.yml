@@ -1,0 +1,38 @@
+version: "3.1"
+
+services:
+  pg:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_USER: ${PG_USER}
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
+      POSTGRES_DB: ${PG_NAME}
+      PGDATA: /var/lib/postgresql/data/pgdata
+    networks:
+      - dev-network
+    ports:
+      - "5432:5432"
+    env_file:
+      - ./.env
+    volumes:
+      - ./data/postgres/pgdata:/var/lib/postgresql/data/pgdata
+
+  mysql:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    ports:
+      - "3306:3306"
+    networks:
+      - dev-network
+    env_file:
+      - ./.env
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+
+networks:
+  dev-network:
+    driver: bridge
