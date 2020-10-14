@@ -30,7 +30,7 @@ services:
     networks: 
       - docker-stack_dev-network
     external_links:
-      - pg_db:pg_db
+      - pg_db:pg
 
 networks:
   docker-stack_dev-network:
