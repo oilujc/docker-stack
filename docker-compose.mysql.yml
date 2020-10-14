@@ -5,9 +5,7 @@ services:
     image: mysql:5.7
     container_name: mysql_db
     volumes:
-      - type: bind
-        source: ./mysql/config
-        target: /etc/mysql/conf.d
+      - ./data/mysql:/etc/mysql/conf.d
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
       - MYSQL_DATABASE=${MYSQL_DATABASE}
