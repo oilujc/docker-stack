@@ -18,3 +18,21 @@ And then the application and database will be started:
 ```shell
 Starting stack_db ... done
 ```
+
+## Using external networks
+
+```yaml
+# docker-compose2
+version: '3.1'
+services:
+  app:
+    build: .
+    networks: 
+      - docker-stack_dev-network
+    external_links:
+      - pg_db:pg_db
+
+networks:
+  docker-stack_dev-network:
+    external: true
+```
