@@ -14,8 +14,8 @@ services:
     env_file:
       - ./.env
     networks:
-      - dev-network
+      - dev-mysql-network
 
 networks:
-  dev-network:
+  dev-mysql-network:
     driver: bridge
