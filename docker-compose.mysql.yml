@@ -13,6 +13,8 @@ services:
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
     env_file:
       - ./.env
+    ports:
+      - "${MYSQL_PORT}:${MYSQL_PORT}"
     networks:
       - dev-mysql-network
 
