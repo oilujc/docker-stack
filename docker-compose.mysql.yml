@@ -16,8 +16,8 @@ services:
     ports:
       - "${MYSQL_PORT}:${MYSQL_PORT}"
     networks:
-      - dev-mysql-network
+      - docker-stack_dev-network
 
 networks:
-  dev-mysql-network:
-    driver: bridge
+  docker-stack_dev-network:
+    external: true
