@@ -5,7 +5,7 @@ services:
     image: mysql:5.7
     container_name: mysql_db
     volumes:
-      - ./data/mysql:/etc/mysql/conf.d
+      - mysql_data:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
       - MYSQL_DATABASE=${MYSQL_DATABASE}
@@ -17,6 +17,10 @@ services:
       - "${MYSQL_PORT}:${MYSQL_PORT}"
     networks:
       - docker-stack_dev-network
+
+volumes:
+  mysql_data:
+    driver: local
 
 networks:
   docker-stack_dev-network:
